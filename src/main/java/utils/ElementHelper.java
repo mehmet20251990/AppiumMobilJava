@@ -40,6 +40,5 @@ public class ElementHelper {
         findElement(locator).sendKeys(text);
     }
     public void scroll(By locator, String text) {
-
     }
 }

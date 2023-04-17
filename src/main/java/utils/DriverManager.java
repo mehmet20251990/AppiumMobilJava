@@ -6,28 +6,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-
 public class DriverManager {
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
-
     private DriverManager() {
     }
-
     public static WebDriver getDriver() {
         return driverThread.get();
     }
-
     public static void quitDriver() {
         if (driverThread.get() != null) {
             driverThread.get().quit();
             driverThread.remove();
         }
     }
-
     public static WebDriver createDriver(String browser, String url, int implictyWait) {
         WebDriver driver;
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -44,7 +38,6 @@ public class DriverManager {
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("appPackage", "io.appium.android.apis");
                 capabilities.setCapability("appActivity", "io.appium.android.apis.ApiDemos");
-
                 try {
                     driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
                 } catch (MalformedURLException e) {
