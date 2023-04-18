@@ -24,7 +24,7 @@ public class ElementHelper {
     public void checkElement(By locator) {
         findElement(locator);
     }
-    public void clickElement(By locator) {
+    public void click(By locator) {
         findElement(locator).click();
     }
     public void sendKeys(By locator, String text) {

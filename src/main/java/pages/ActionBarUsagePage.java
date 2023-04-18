@@ -12,7 +12,7 @@ public class ActionBarUsagePage {
         this.elementHelper = new ElementHelper(driver);
     }
     public void clickSearchButton() {
-        elementHelper.clickElement(searchBtn);
+        elementHelper.click(searchBtn);
     }
     public void sendKeysSearchArea(String text) {
         elementHelper.sendKeys(textBox, text);
