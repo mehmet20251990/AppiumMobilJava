@@ -32,4 +32,12 @@ public class ApiDemosSteps {
     public void tablardenTabineTıklanır(String text) {
         apiDemosPage.clickTab(text);
     }
+    @When("tablarden Touch Paint tabine tıklanır")
+    public void tablardenTouchPaintTabineTıklanır() {
+        apiDemosPage.clickTouchPaintTab();
+    }
+    @When("tablarden Touch Paint tabine tıklanırrrrr")
+    public void tablardenTouchPaintTabineTıklanırrr() {
+        apiDemosPage.clickTouchPaintTab2();
+    }
 }

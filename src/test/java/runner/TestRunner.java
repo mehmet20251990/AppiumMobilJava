@@ -18,7 +18,6 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     public Object[][] scenarios() {
         return super.scenarios();
     }
-
     // TestNG Hooks
     @BeforeSuite
     public void beforeSuite(ITestContext context) {

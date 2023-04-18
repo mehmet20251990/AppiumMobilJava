@@ -1,8 +1,6 @@
 package utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,8 +10,9 @@ public class ElementHelper {
     private WebDriver driver;
     private WebDriverWait wait;
     public ElementHelper(WebDriver driver) {
+        String time = ConfigReader.getProperty("wait");
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(time)));
     }
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -27,24 +26,24 @@ public class ElementHelper {
     public void click(By locator) {
         findElement(locator).click();
     }
-    public void sendKeys(By locator, String text) {
-        findElement(locator).sendKeys(text);
-    }
-    public void scroll(By locator, String text) {
-    }
     public String getText(By locator) {
         return findElement(locator).getText();
+    }
+    public void sendKeys(By locator, String text) {
+        findElement(locator).sendKeys(text);
     }
     public void clickElementWithText(By locator, String text) {
         boolean check = false;
         List<WebElement> elementList = findElements(locator);
         for (WebElement elem : elementList) {
             if (elem.getText().equals(text)) {
-                elem.click();
                 check = true;
+                elem.click();
                 break;
             }
         }
         Assert.assertTrue(check, "Listede istediğin textteki elamanı bulamadım!!!");
+    }
+    public void scroll() {
     }
 }
