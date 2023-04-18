@@ -25,6 +25,6 @@ public class SearchPage {
         elementHelper.checkElement(listBox);
     }
     public void clickListBoxButtons(String button) {
-        elementHelper.clickListElement(listBoxButtons, button);
+        elementHelper.clickElementWithText(listBoxButtons, button);
     }
 }

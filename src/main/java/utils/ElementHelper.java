@@ -18,27 +18,33 @@ public class ElementHelper {
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+    public List<WebElement> findElements(By locator) {
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+    }
     public void checkElement(By locator) {
         findElement(locator);
     }
     public void clickElement(By locator) {
         findElement(locator).click();
     }
-    public void clickListElement(By locator, String text) {
-        boolean check = false;
-        List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        for (WebElement element : elements) {
-            if (element.getAttribute("value").contains(text)) {
-                element.click();
-                check = true;
-                break;
-            }
-        }
-        Assert.assertTrue(check);
-    }
     public void sendKeys(By locator, String text) {
         findElement(locator).sendKeys(text);
     }
     public void scroll(By locator, String text) {
+    }
+    public String getText(By locator) {
+        return findElement(locator).getText();
+    }
+    public void clickElementWithText(By locator, String text) {
+        boolean check = false;
+        List<WebElement> elementList = findElements(locator);
+        for (WebElement elem : elementList) {
+            if (elem.getText().equals(text)) {
+                elem.click();
+                check = true;
+                break;
+            }
+        }
+        Assert.assertTrue(check, "Listede istediğin textteki elamanı bulamadım!!!");
     }
 }
