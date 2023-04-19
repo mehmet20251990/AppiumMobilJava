@@ -39,7 +39,7 @@ public class ApiDemosPage {
         elementHelper.click(tab_touchPaint);
     }
     public void clickTouchPaintTab2() {
-        elementHelper.scroll();
+        elementHelper.scrollDown();
         elementHelper.click(tab_touchPaint2);
     }
 }

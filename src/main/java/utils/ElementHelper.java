@@ -1,6 +1,9 @@
 package utils;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -44,6 +47,47 @@ public class ElementHelper {
         }
         Assert.assertTrue(check, "Listede istediğin textteki elamanı bulamadım!!!");
     }
-    public void scroll() {
+    public void scrollDown() {
+        int startX = driver.manage().window().getSize().getWidth() / 2;
+        int startY = driver.manage().window().getSize().getHeight() / 2;
+        int endx = driver.manage().window().getSize().getWidth() / 2;
+        int endY = (int) (driver.manage().window().getSize().getHeight() * 0.2);
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence scroll = new Sequence(finger, 0);
+        scroll.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY));
+        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        scroll.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), endx, endY));
+        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        ((RemoteWebDriver) driver).perform(List.of(scroll));
+    }
+    public void scrollUp() {
+        int startX = driver.manage().window().getSize().getWidth() / 2;
+        int startY = (int) (driver.manage().window().getSize().getHeight() * 0.2);
+        int endx = driver.manage().window().getSize().getWidth() / 2;
+        int endY = driver.manage().window().getSize().getHeight() / 2;
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence scroll = new Sequence(finger, 0);
+        scroll.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY));
+        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        scroll.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), endx, endY));
+        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        ((RemoteWebDriver) driver).perform(List.of(scroll));
+    }
+    public WebElement scroll(By by) {
+        int i = 0;
+        String previusPageSource = "";
+        while (checkElemenEnabled(by) && checkEndOfPage(previusPageSource) && i < 5) {
+            i++;
+            previusPageSource = driver.getPageSource();
+            scrollDown();
+        }
+        return driver.findElement(by);
+    }
+    public boolean checkEndOfPage(String previusPageSource) {
+        return !previusPageSource.equals(driver.getPageSource());
+    }
+    public boolean checkElemenEnabled(By by) {
+        return driver.findElements(by).isEmpty();
     }
 }
