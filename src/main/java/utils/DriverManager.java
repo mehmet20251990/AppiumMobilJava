@@ -38,6 +38,9 @@ public class DriverManager {
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("appPackage", "io.appium.android.apis");
                 capabilities.setCapability("appActivity", "io.appium.android.apis.ApiDemos");
+            //    capabilities.setCapability("appPackage", "com.sahibinden");
+            //    capabilities.setCapability("appActivity", "com.sahibinden.ui.supplementary.UrlForwardingActivity");
+                capabilities.setCapability("noReset", false);
                 try {
                     driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
                 } catch (MalformedURLException e) {
