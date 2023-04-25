@@ -9,6 +9,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 public class main {
+    /*
+    BİR TEST PROJESİ OLUŞTURURKEN YAPILACAKLAR
+    1-) Step Definitionları tanımlama
+    2-) Page sınıflarını oluşturma
+    3-) Page sınıfında metodlar tanımlanıcak
+    4-) Page sınıfında elementler tanımlanıcak
+    5-) Page sınıfındaki metodların içine kullanacakları elementHelper metodları tanımlanıcak
+    6-) Casei çalıştırıp hataları kontrol edip düzelticem
+     */
     public static void main(String[] args) throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "Android");
