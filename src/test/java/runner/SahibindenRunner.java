@@ -6,9 +6,9 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 @CucumberOptions(
-        tags = "@CheckResult",
+        tags = "@CheckFilters",
         features = "src/test/resources/features",
-        glue = {"stepdefinitions","utils"},
+        glue = {"stepdefinitions", "utils"},
         plugin = {
                 "pretty",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
