@@ -41,3 +41,10 @@ Feature: Mobile Search Page
     Given uygulamanın açıldığı kontrol edilir
     When tablarden "Graphics" tabine tıklanır
     When tablarden Touch Paint tabine tıklanırrrrr
+
+  @ButtonsPage
+  Scenario: Check Buttons Page
+    Given user should see the CategoriesPage
+    When taps "Views" on CategoriesPage
+    When taps "Buttons" on CategoriesPage
+    Then should see Buttons Page

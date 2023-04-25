@@ -19,8 +19,8 @@ public class ResultsPageSteps {
     public void tapsOrderOnResultPage() {
         resultsPage.clickOrder();
     }
-    @Then("should see first car price lower than or equals {string} on Result Page")
-    public void shouldSeeFirstCarPriceLowerThanOrEqualsOnResultPage(String price) {
+    @Then("should see first car price lower than or equals {string} on Result Pageen should see Results on Result Page")
+    public void shouldSeeFirstCarPriceLowerThanOrEqualsOnResultPageenShouldSeeResultsOnResultPage(String price) {
         String currentPrice = resultsPage.getFirstOrderPrice();
         Assert.assertTrue(currentPrice.equals(price));
     }
