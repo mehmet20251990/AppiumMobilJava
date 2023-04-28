@@ -1,5 +1,6 @@
 package utils;
 
+import com.google.common.collect.ImmutableMap;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -27,6 +28,10 @@ public class ElementHelper {
     public List<WebElement> findElements(By locator) {
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
+    public void pressEnter() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("mobile:performEditorAction", ImmutableMap.of("action", "done"));
+    }
     public void checkElement(By locator) {
         findElement(locator);
     }
@@ -49,6 +54,27 @@ public class ElementHelper {
                 if (elem.getText().equals(text)) {
                     check = true;
                     elem.click();
+                    break;
+                }
+            }
+            if (check) {
+                break;
+            } else {
+                scrollDown();
+                i++;
+            }
+        }
+        Assert.assertTrue(check, "Listede istediğin textteki elamanı bulamadım!!!");
+    }
+    public void checkElementWithText(By locator, String text) {
+        int i = 0;
+        boolean check = false;
+        findElement(locator);
+        while (i < 4) {
+            List<WebElement> elementList = findElements(locator);
+            for (WebElement elem : elementList) {
+                if (elem.getText().equals(text)) {
+                    check = true;
                     break;
                 }
             }
